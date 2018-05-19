@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Control Numero 2</title>
+
+	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+	<h2>cuet</h2>
+
+	<section class="container">
+		<div id="resultado"></div>
+		<button onclick="Cargar();" class="btn btn-primary" data-dismiss="modal">Mostrar los Productos</button>
+	</section>
+
+
+
+	<script
+		src="https://code.jquery.com/jquery-2.2.4.min.js"
+		integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+		crossorigin="anonymous">
+	</script>
+
+	<script type="text/javascript">
+		function listar(){
+			var xmlhttp = new XMLHttpRequest();
+			var url = "controlador/listar.php";
+			xmlhttp.onreadystatechange=function(){
+				if (xmlhttp.readyState== 4 && xmlhttp.status == 200)  {
+					var array = JSON.parse(xmlhttp.responseText);
+					var i;
+					var out = "<table border='1' class='table table-striped table-bordered' style='width:100%' >";
+					out+=" <thead> <tr><th>ID</th><th>nombre</th><th>codigo</th><th>producto</th></tr><thead>";
+					for (i = 0; i < array.length; i++) {
+						out+=" <tr><td>"+
+						 array[i].id +
+						 "</td><td>"+
+						 array[i].user +
+						 "</td><td>" +
+						 array[i].pass+
+						 "</td><td>"+
+						 "</td><td>"+
+						 "</td></tr>";
+					}
+					out+="</table>";
+					document.getElementById("resultado").innerHTML = out;
+				}
+			}
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+
+		}
+	</script>
+
+</body>
+</html>
