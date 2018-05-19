@@ -1,28 +1,13 @@
 <?php
 
-class conexion
-{
-	private $host = "localhost";
-	private $dbname = "producto";
-	private $user = "root";
-	private $password = "";
-	private $conexion = null;
-	
-	public function getConexion(){
-		try {
-			this->conn= new PDO(
-				"mysql:host=$this->host; dbname=$this->dbname",
-				$this->user,
-									$this->password
-			);
-			return $this->conexion;
+	$server = "localhost";
+	$user = "root";
+	$password = "";//poner tu propia contraseña, si tienes una.
+	$bd = "control2";
 
-		} catch (Exception $e) {
-			echo $e->getMessage();
-		}finally{
-				$this->conexion = null;
-			}
-	}
+	$conexion = mysqli_connect($server, $user, $password, $bd);
+	if (!$conexion){ 
+		die('Error de Conexión: ' . mysqli_connect_errno());	
+	}	
 
-}
 ?>

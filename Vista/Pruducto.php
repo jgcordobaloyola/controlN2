@@ -24,7 +24,6 @@ class Producto{
 		$db new conexion();
 		if ($conexion) {
 			$sql= "insert into control2 (nombre,codigo,valor) values ('".$this->nombre."','".$this->codigo."','".$this->valor."')";
-
 			if ($conexion->query($sql)===TRUE) {
 				return array(TRUE, $this->toJSON());
 			}else{
